@@ -1,0 +1,27 @@
+.card-header,.card-footer{
+    background-color: lightblue;
+}
+
+.btn{
+    background-color: dodgerblue;
+}
+
+.navbar-custom,.bg-custom,.btn-custom{
+    background-color: #373737;
+}
+
+.active{
+    color: white;
+}
+
+make-container($padding-x: $container-padding-x) {
+    width: 100%;
+    padding-right: $padding-x;
+    padding-left: $padding-x;
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
+.custom-container {
+    @include make-container();
+}
