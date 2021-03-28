@@ -2,7 +2,6 @@
 session_start();
 include ('./lib/php/admin_liste_include.php');
 $cnx = Connexion::getInstance($dsn,$user,$password);
-pomme
 ?>
 <!doctype html>
 <html>
