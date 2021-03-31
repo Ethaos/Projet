@@ -24,7 +24,7 @@ class JeuxBD extends Jeux {
 
     public function getJeuxById($idJeu){
         try{
-            $query="select * from jv_jeux where idJeu = :idJeu";
+            $query="select * from jv_jeux where idJeu=:idJeu";
             $_resultset = $this->_db->prepare($query);
             $_resultset->bindValue(':idJeu',$idJeu);
             $_resultset->execute();
@@ -35,7 +35,7 @@ class JeuxBD extends Jeux {
             //var_dump($_data);
             return $_data;
         }catch(PDOException $e){
-            print 'Echec de la requete'.$e->getMessage();
+            print "Echec de la requete".$e->getMessage();
         }
     }
 }

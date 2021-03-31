@@ -15,7 +15,7 @@ if(isset($_GET['page'])){
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                        <a class="nav-link <?php if($page=='accueil.php') {print 'active';}?>" href="index_.php?page=accueil.php">Accueil</a>
+                        <a class="nav-link <?php if($page=='accueil.php') {print 'active';}?>" href="index_.php?page=accueil_admin.php">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php if($page=='affichageJeux.php') {print 'active';}?>" href="index_.php?page=affichageJeux.php">Jeux encodés</a>

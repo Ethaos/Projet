@@ -24,14 +24,14 @@
         for($i=0 ; $i<$nbr ; $i++){
             ?>
             <tr>
-                <td scope="row"><?php print $listeJeux[$i]->idJeu;?></td>
-                <td scope="row"><?php print $listeJeux[$i]->nomJeu;?></td>
+                <td scope="row"><?php print $listeJeux[$i]->idjeu;?></td>
+                <td scope="row"><?php print $listeJeux[$i]->nomjeu;?></td>
                 <td scope="row"><?php print $listeJeux[$i]->plateforme;?></td>
                 <td scope="row"><?php print $listeJeux[$i]->editeur;?></td>
-                <td scope="row"><?php print $listeJeux[$i]->anneeSortie;?></td>
+                <td scope="row"><?php print $listeJeux[$i]->anneesortie;?></td>
                 <td scope="row"><?php print $listeJeux[$i]->note;?></td>
                 <td scope="row">
-                    <a class="btn btn-dark" href="index_.php?page=pageJeu.php&idJeu=<?php print $listeJeux[$i]->idJeu?>" role="button">
+                    <a class="btn btn-dark" href="index_.php?page=pageJeu.php&idJeu=<?php print $listeJeux[$i]->idjeu?>" role="button">
                         Voir
                     </a>
                 </td>

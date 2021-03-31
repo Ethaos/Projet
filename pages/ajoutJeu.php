@@ -41,5 +41,9 @@
             <input class="form-control form-control" id="formFile" type="file">
         </div>
     </form>
+    <br>
+    <div class="col-12">
+        <button type="submit" class="btn bg-custom text-white" data-toggle="button" aria-pressed="false" autocomplete="off">Ajouter</button>
+    </div>
 </div>
 <br><br><br>
