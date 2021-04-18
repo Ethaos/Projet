@@ -1,4 +1,4 @@
-<br><br><br>
+<br><br>
 <?php
 $jeux = new JeuxBD($cnx);
 if(isset($_GET['idJeu'])){
@@ -16,14 +16,36 @@ $nbr = count($listeJeux);
             <center>
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm w-75 h-md-250">
                     <div class="col-auto d-none d-lg-block">
-                        <img src="./admin/images/<?php print $listeJeux[$i]->photo;?>" alt="Image non trouvée" height="400px" width="300px">
+                        <img src="./admin/images/<?php
+                        if($listeJeux[$i]->photo==null){
+                            print 'noImage.png';
+                        }else{
+                            print $listeJeux[$i]->photo;
+                        }
+                        ?>" alt="Image non trouvée" height="400px" width="300px">
                     </div>
                     <div class="col p-4 d-flex flex-column position-static">
                         <h3 class="mb-5  underline"><?php print $listeJeux[$i]->nomjeu;?></h3>
-                        <strong class="mb-4"><?php print $listeJeux[$i]->plateforme;?></strong>
-                        <p class="mb-4"><?php print $listeJeux[$i]->editeur;?></p>
-                        <p class="mb-4"><?php print $listeJeux[$i]->anneesortie;?></p>
-                        <p class="mb-4"><?php print $listeJeux[$i]->note;?>/5</p>
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th scope="row">Plateforme</th>
+                                <td><?php print $listeJeux[$i]->plateforme;?>
+                            </tr>
+                            <tr>
+                                <th scope="row">Editeur</th>
+                                <td><?php print $listeJeux[$i]->editeur;?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Année</th>
+                                <td><?php print $listeJeux[$i]->anneesortie;?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Note</th>
+                                <td><?php print $listeJeux[$i]->note;?></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </center>
@@ -31,3 +53,10 @@ $nbr = count($listeJeux);
     }
     ?>
 </div>
+<center>
+    <a class="btn btn-dark" href="index_.php?page=affichageJeux.php" role="button">
+        Retour
+    </a>
+</center>
+
+

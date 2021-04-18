@@ -15,8 +15,7 @@
             <th scope="col">Plateforme</th>
             <th scope="col">Editeur</th>
             <th scope="col">Année</th>
-            <th scope="col">Note /5</th>
-            <th scope="col">Page du jeu</th>
+            <th scope="col">Note</th>
         </tr>
         </thead>
         <tbody>
@@ -30,11 +29,6 @@
                 <td scope="row"><?php print $listeJeux[$i]->editeur;?></td>
                 <td scope="row"><?php print $listeJeux[$i]->anneesortie;?></td>
                 <td scope="row"><?php print $listeJeux[$i]->note;?></td>
-                <td scope="row">
-                    <a class="btn btn-dark" href="index_.php?page=pageJeu.php&idJeu=<?php print $listeJeux[$i]->idjeu?>" role="button">
-                        Voir
-                    </a>
-                </td>
             </tr>
             <?php
         }

@@ -18,7 +18,10 @@ if(isset($_GET['page'])){
                         <a class="nav-link <?php if($page=='accueil.php') {print 'active';}?>" href="index_.php?page=accueil_admin.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if($page=='affichageJeux.php') {print 'active';}?>" href="index_.php?page=affichageJeux.php">Jeux encodés</a>
+                        <a class="nav-link <?php if($page=='affichageJeux.php') {print 'active';}?>" href="index_.php?page=affichageJeuxAdmin.php">Jeux encodés</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if($page=='afficheClients.php') {print 'active';}?>" href="index_.php?page=afficheClients.php">Clients encodés</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle <?php if($page=='modification.php' || $page=='suppression.php') {print 'active';}?>" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

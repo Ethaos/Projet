@@ -38,4 +38,22 @@ class JeuxBD extends Jeux {
             print "Echec de la requete".$e->getMessage();
         }
     }
+
+    public function setJeu($nomJeu,$plateforme,$editeur,$anneesortie,$note){
+        try{
+            $query="select ajoutJeu (:nomJeu,:plateforme,:editeur,:anneesortie,:note) as retour";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->bindValue(':nomJeu',$nomJeu);
+            $_resultset->bindValue(':plateforme',$plateforme);
+            $_resultset->bindValue(':editeur',$editeur);
+            $_resultset->bindValue(':anneesortie',$anneesortie);
+            $_resultset->bindValue(':note',$note);
+            $_resultset->execute();
+            $retour = $_resultset->fetchColumn(0);
+            var_dump($retour);
+            return $retour;
+        }catch(PDOException $e){
+            print "Echec de la requete".$e->getMessage();
+        }
+    }
 }

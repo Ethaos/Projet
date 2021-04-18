@@ -25,13 +25,19 @@ $cnx = Connexion::getInstance($dsn,$user,$password);
             }
             ?>
             <?php
+            if(isset($_SESSION['page']) && !isset($_SESSION['partie_admin'])){
+                unset($_SESSION['page']);
+                $_SESSION['partie_admin']=1;
+            }
             if (!isset($_SESSION['page'])) {
                 $_SESSION['page'] = "accueil_admin.php";
             }
             if (isset($_GET['page'])) {
+                //si on a un param page dans l'url
                 $_SESSION['page'] = $_GET['page'];
             }
             $path = "./pages/" . $_SESSION['page'];
+            // print "path: " . $path . "<br>";
             if (file_exists($path)) {
                 include ($path);
             } else {
