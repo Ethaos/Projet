@@ -17,7 +17,22 @@ class AdminBD extends Admin {
             $_resultset->bindValue(':password', md5($password));
             $_resultset->execute();
             $retour = $_resultset->fetchColumn(0);
-            var_dump($retour);
+            //var_dump($retour);
+            return $retour;
+        }catch(PDOException $e){
+            print "Echec ".$e->getMessage();
+        }
+    }
+
+    public function getClient($login, $password){
+        try {
+            $query = "select isClient(:login,:password) as retour";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->bindValue(':login', $login);
+            $_resultset->bindValue(':password', md5($password));
+            $_resultset->execute();
+            $retour = $_resultset->fetchColumn(0);
+            //var_dump($retour);
             return $retour;
         }catch(PDOException $e){
             print "Echec ".$e->getMessage();

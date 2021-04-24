@@ -1,5 +1,5 @@
 <?php
-include('./lib/php/verifConnexion.php');
+include('./lib/php/verifAdmin.php');
 
 if(isset($_SESSION['admin'])){
     print "<br>Bienvenue dans la suppression";

@@ -6,11 +6,10 @@
 <br>
 <h3 class="text-center underline">Liste des jeux</h3>
 <br>
-<div class="container">
+<div class="container" style="width: 70%">
     <table class="table table-striped table-bordered">
         <thead>
         <tr class="bg-custom text-white text-center">
-            <th scope="col">ID</th>
             <th scope="col">Nom</th>
             <th scope="col">Plateforme</th>
             <th scope="col">Editeur</th>
@@ -24,8 +23,7 @@
         for($i=0 ; $i<$nbr ; $i++){
             ?>
             <tr>
-                <td scope="row"><?php print $listeJeux[$i]->idjeu;?></td>
-                <td scope="row"><?php print $listeJeux[$i]->nomjeu;?></td>
+                <td scope=""><?php print $listeJeux[$i]->nomjeu;?></td>
                 <td scope="row"><?php print $listeJeux[$i]->plateforme;?></td>
                 <td scope="row"><?php print $listeJeux[$i]->editeur;?></td>
                 <td scope="row"><?php print $listeJeux[$i]->anneesortie;?></td>

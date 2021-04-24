@@ -39,9 +39,20 @@ class JeuxBD extends Jeux {
         }
     }
 
-    public function setJeu($nomJeu,$plateforme,$editeur,$anneesortie,$note){
+    public function updateProduit($champ,$id,$valeur){
         try{
-            $query="select ajoutJeu (:nomJeu,:plateforme,:editeur,:anneesortie,:note) as retour";
+            //appeler une procédure embarquée
+            $query = "update bp_produit set ".$champ."='".$valeur."'where id_produit = '".$id."'";
+            $_resultset = $this->_db->prepare($query);//transformer la requete !!!
+            $_resultset->execute();
+        }catch(PDOException $e){
+            print $e->getMessage();
+        }
+    }
+
+    public function ajoutJeu($nomJeu,$plateforme,$editeur,$anneesortie,$note){
+        try{
+            $query = "select ajoutJeu(:nomJeu,:plateforme,:editeur,:anneesortie,:note) as retour";
             $_resultset = $this->_db->prepare($query);
             $_resultset->bindValue(':nomJeu',$nomJeu);
             $_resultset->bindValue(':plateforme',$plateforme);

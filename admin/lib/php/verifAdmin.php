@@ -1,5 +1,5 @@
 <?php
-    if(!isset($_SESSION['admin'])){
+    if(isset($_SESSION['admin']==0)){
         print "Accès réservé";
         session_destroy();
         ?>

@@ -28,7 +28,7 @@ if(isset($_GET['page'])){
                             Gestion
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="index_.php?page=ajoutJeu.php">Ajout</a></li>
+                            <li><a class="dropdown-item" href="index_.php?page=ajoutJeuAdmin.php">Ajout</a></li>
                             <li><a class="dropdown-item" href="index_.php?page=modification.php">Modification</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="index_.php?page=suppression.php">Suppression</a></li>
@@ -36,16 +36,8 @@ if(isset($_GET['page'])){
                     </li>
                 </ul>
                 <ul class="navbar-nav r-3 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle <?php if($page=='connexion.php' || $page=='deconnexion.php' || $page=='inscription.php') {print 'active';}?>" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Connexion
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="index_.php?page=connexion.php">Connexion</a></li>
-                            <li><a class="dropdown-item" href="index_.php?page=deconnexion.php">Déconnexion</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="index_.php?page=inscription.php">Inscription</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if($page=='deconnexion.php') {print 'active';}?>" href="index_.php?page=deconnexion.php">Déconnexion</a>
                     </li>
                 </ul>
             </div>
