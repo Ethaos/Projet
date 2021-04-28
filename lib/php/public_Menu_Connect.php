@@ -25,7 +25,12 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav r-3 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item"><a class="dropdown-item" href="index_.php?page=deconnexion.php">Déconnexion</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Bonjour, <?php print $_SESSION['prenom']?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if($page=='deconnexion.php') {print 'active';}?>" href="index_.php?page=deconnexion.php">Déconnexion</a>
+                    </li>
                 </ul>
             </div>
         </div>

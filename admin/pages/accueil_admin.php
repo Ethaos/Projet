@@ -1,7 +1,15 @@
-<div class="container">
-    <h1 class="center underline"> Accueil Admin </h1>
-    <br><br>
-    <center>
-        <img src="./images/admin.png" height="490px" width="450px">
-    </center>
-</div>
+<?php
+include('./lib/php/verifAdmin.php');
+if(isset($_SESSION['admin'])){
+    ?>
+    <div class="container" >
+        <br>
+        <h1 class="center underline"> Accueil Admin </h1>
+        <center>
+            <img class="topImg" src="./images/admin.png" height="200px" width="180px">
+        </center>
+    </div>
+<?php
+}
+?>
+

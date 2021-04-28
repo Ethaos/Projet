@@ -2,16 +2,15 @@
     background-color: lightblue;
 }
 
-.btn{
-    background-color: dodgerblue;
+.navbar-custom{
+    background-color: #002f46;
+}
+.btn-clair{
+    background-color: #106895;
 }
 
-.navbar-custom,.bg-custom,.btn-custom{
-    background-color: #373737;
-}
-
-.active{
-    color: white;
+.bg-custom,.btn-custom{
+    background-color: #004365;
 }
 
 .navbar .navbar-collapse{

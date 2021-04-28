@@ -14,7 +14,7 @@ $cnx = Connexion::getInstance($dsn,$user,$password);
     <link rel="stylesheet" href="./lib/css/style.css"/>
     <link rel="stylesheet" href="./lib/css/custom.css"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <script src="lib/js/fonctions.js"></script>
+    <script src="./lib/js/fonctions.js"></script>
 </head>
 <body>
 <div id="page">

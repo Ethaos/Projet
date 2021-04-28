@@ -20,7 +20,7 @@ if(isset($_SESSION['admin'])){
             <tbody>
             <?php
             for($i=0 ; $i<$nbr ; $i++){
-                if($listeUser[$i]->status == false){
+                if($listeUser[$i]->status == true){
                     ?>
                     <tr>
                         <td scope="row"><?php print $listeUser[$i]->nom;?></td>
@@ -34,6 +34,6 @@ if(isset($_SESSION['admin'])){
             </tbody>
         </table>
     </div>
-<?php
+    <?php
 }
 ?>

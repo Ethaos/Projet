@@ -14,17 +14,25 @@ $cnx = Connexion::getInstance($dsn,$user,$password);
     <link rel="stylesheet" href="./admin/lib/css/style.css"/>
     <link rel="stylesheet" href="./admin/lib/css/custom.css"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <script src="admin/lib/js/fonctions.js"></script>
+    <script src="./admin/lib/js/fonctions.js"></script>
 </head>
 <body>
 <div id="page">
     <section id="contenu">
         <div id="main">
             <?php
-                $path = "./lib/php/public_menu.php";
-                if (file_exists($path)) {
-                    include ($path);
+                if(isset($_SESSION['admin'])==2){
+                    $path = "./lib/php/public_Menu_Connect.php";
+                    if (file_exists($path)) {
+                        include ($path);
+                    }
+                }else{
+                    $path = "./lib/php/public_menu.php";
+                    if (file_exists($path)) {
+                        include ($path);
+                    }
                 }
+
             ?>
             <?php
             if (!isset($_SESSION['page'])) {
@@ -43,14 +51,5 @@ $cnx = Connexion::getInstance($dsn,$user,$password);
         </div>
     </section>
 </div>
-<footer class="footer mt-auto py-3 bg-custom text-center fixed-bottom" style="height: 40px">
-    <div class="container">
-        <?php
-        if(file_exists('./lib/php/public_footer.php')){
-            include ('./lib/php/public_footer.php');
-        }
-        ?>
-    </div>
-</footer>
 </body>
 </html>

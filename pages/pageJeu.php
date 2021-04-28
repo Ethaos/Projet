@@ -6,6 +6,13 @@ if(isset($_GET['idJeu'])){
 }else $listeJeux = $jeux->getJeux();
 
 $nbr = count($listeJeux);
+
+if(isset($_POST['submit'])){
+    extract($_POST,EXTR_OVERWRITE);
+    $j = new JeuxBD($cnx);
+    $jeu = $j->ajoutPhoto($_GET['idJeu'],$photo);
+    //var_dump($jeu);
+}
 ?>
 
 
@@ -19,8 +26,10 @@ $nbr = count($listeJeux);
                         <img src="./admin/images/<?php
                         if($listeJeux[$i]->photo==null){
                             print 'noImage.png';
+                            $noimage = 1;
                         }else{
                             print $listeJeux[$i]->photo;
+                            $noimage = 0;
                         }
                         ?>" alt="Image non trouvée" height="400px" width="300px">
                     </div>
@@ -30,22 +39,54 @@ $nbr = count($listeJeux);
                             <tbody>
                             <tr>
                                 <th scope="row">Plateforme</th>
-                                <td><?php print $listeJeux[$i]->plateforme;?>
+                                <td>
+                                    <span contenteditable="true" name="plateforme" id="<?php print $listeJeux[$i]->idJeu;?>">
+                                    <?php print $listeJeux[$i]->plateforme;?>
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">Editeur</th>
-                                <td><?php print $listeJeux[$i]->editeur;?></td>
+                                <td>
+                                    <span contenteditable="true" name="editeur" id="<?php print $listeJeux[$i]->idJeu;?>">
+                                    <?php print $listeJeux[$i]->editeur;?>
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">Année</th>
-                                <td><?php print $listeJeux[$i]->anneesortie;?></td>
+                                <td>
+                                    <span contenteditable="true" name="anneesortie" id="<?php print $listeJeux[$i]->idJeu;?>">
+                                    <?php print $listeJeux[$i]->anneesortie;?>
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">Note</th>
-                                <td><?php print $listeJeux[$i]->note;?></td>
+                                <td>
+                                    <span contenteditable="true" name="note" id="<?php print $listeJeux[$i]->idJeu;?>">
+                                    <?php print $listeJeux[$i]->note;?>
+                                    </span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
+                        <?php
+                        if($noimage==1){
+                            ?>
+                                <form action="<?php print $_SERVER['PHP_SELF'];?>" method="post">
+                                    <center>
+                                        <div class="col-sm-6">
+                                            <label for="photo" class="form-label">Ajouter une image</label>
+                                            <input class="form-control form-control-sm" name="photo" type="file">
+                                            <br>
+                                            <!--<button id="submit" type="submit" class="w-50 btn btn-sm btn-dark text-white" name="submit">Ajouter</button>-->
+                                        </div>
+                                    </center>
+                                </form>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </center>
@@ -54,7 +95,7 @@ $nbr = count($listeJeux);
     ?>
 </div>
 <center>
-    <a class="btn btn-dark" href="index_.php?page=affichageJeux.php" role="button">
+    <a class="btn btn-custom text-white" href="index_.php?page=affichageJeux.php" role="button">
         Retour
     </a>
 </center>

@@ -1,5 +1,17 @@
+body{
+    margin: 0%;
+}
+
 .brown{
     color: saddlebrown;
+}
+
+.red{
+    color: red;
+}
+
+.text-color{
+    color: #ebae44;
 }
 
 .center{
@@ -9,5 +21,9 @@
 
 .underline{
     text-decoration: underline;
+}
+
+.topImg{
+    margin-top: 6%;
 }
 

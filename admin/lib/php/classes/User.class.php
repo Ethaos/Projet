@@ -1,16 +1,15 @@
 <?php
 
 
-class Client
-{
+class User{
     private $_attributs = array();
 
-    public function __construct(array $data) { //$data est reçu de ThemeBD
+    public function __construct(array $data) {
         $this->hydrate($data);
     }
 
-    public function hydrate(array $data){ //reçu du constructeur
-        foreach($data as $champ => $valeur){ //chaque champ est créé et associé à sa valeur
+    public function hydrate(array $data){
+        foreach($data as $champ => $valeur){
             $this->$champ = $valeur;
         }
     }

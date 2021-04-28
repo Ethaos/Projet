@@ -3,18 +3,37 @@
     <?php
     if(isset($_POST['submit'])){
         extract($_POST,EXTR_OVERWRITE);
-        $ad = new AdminBD($cnx);
-        $admin = $ad->getAdmin($login,$password);
-        //print "login : ".$login." || password : ".$password;
+        $ad = new UserBD($cnx);
+        $admin = $ad->getUser($login,$password);
         //var_dump($admin);
-        if($admin){
+        $user = new UserBD($cnx);
+        $listeUser = $user->getClientEntete($login);
+        $nbr= count($listeUser);
+        if($admin==1){
             $_SESSION['admin']=1;
+            for($i=0 ; $i<$nbr ; $i++){
+                $_SESSION['prenom']=$listeUser[$i]->prenom;
+            }
             ?>
             <p class="center text-center">Admin vérifié<i class="fas fa-user-check"></i></p>
             <meta http-equiv="refresh": content="0; URl=./admin/index_.php">
             <?php
-        }else{
+        }else if($admin==2){
             $_SESSION['admin']=2;
+            for($i=0 ; $i<$nbr ; $i++){
+                $_SESSION['prenom']=$listeUser[$i]->prenom;
+            }
+            ?>
+            <p class="center text-center">Client vérifié<i class="fas fa-user-check"></i></p>
+            <meta http-equiv="refresh": content="0; URl=./index_.php">
+    <?php
+        }elseif($admin==0){
+            ?>
+            <p class="center text-center red">
+                Client non encodé <i class="fas fa-user-times"></i><br>
+                Veuillez vous inscrire,
+                pour avoir accès à plus de fonctionnalités.</p>
+    <?php
         }
     }
     ?>
@@ -26,7 +45,7 @@
             <label for="password" class="visually-hidden">Mot de passe</label>
             <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required>
             <br>
-            <button type="submit" class="w-100 btn btn-primary" id="connect" name="submit">Se Connecter</button>
+            <button type="submit" class="w-100 btn btn-custom text-white" name="submit">Se Connecter</button>
             <p class="mt-5 mb-3 text-muted">&copy; 2020–2021</p>
         </form>
     </div>

@@ -29,9 +29,11 @@
                 <td scope="row"><?php print $listeJeux[$i]->anneesortie;?></td>
                 <td scope="row"><?php print $listeJeux[$i]->note;?></td>
                 <td scope="row">
-                    <a class="btn btn-dark" href="index_.php?page=pageJeu.php&idJeu=<?php print $listeJeux[$i]->idjeu?>" role="button">
-                        Voir
-                    </a>
+                    <center>
+                        <a class="btn btn-sm btn-clair text-white" href="index_.php?page=pageJeu.php&idJeu=<?php print $listeJeux[$i]->idjeu?>" role="button">
+                            Voir
+                        </a>
+                    </center>
                 </td>
             </tr>
             <?php

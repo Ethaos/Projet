@@ -21,7 +21,7 @@
             <input type="password" class="form-control" id="password">
         </div>
         <div class="col-12">
-            <button type="submit" class="btn bg-custom text-white" data-toggle="button" aria-pressed="false" autocomplete="off">S'enregistrer</button>
+            <button type="submit" class="btn btn-custom text-white" data-toggle="button" aria-pressed="false" autocomplete="off">S'enregistrer</button>
         </div>
     </form>
 </div>
