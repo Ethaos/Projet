@@ -25,13 +25,12 @@ if(isset($_GET['page'])){
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle <?php if($page=='ajoutJeuAdmin.php' ||$page=='afficheModif.php' || $page=='suppression.php') {print 'active';}?>" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gestion
+                            Jeux
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item" href="index_.php?page=ajoutJeuAdmin.php">Ajout</a></li>
-                            <li><a class="dropdown-item" href="index_.php?page=afficheModif.php">Affichage/Modification</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="index_.php?page=suppression.php">Suppression</a></li>
+                            <li><a class="dropdown-item" href="index_.php?page=afficheModif.php">Gestion</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -1,14 +1,25 @@
 <br><br>
 <?php
-if(isset($_POST['submit'])){
-    extract($_POST,EXTR_OVERWRITE);
-    $j = new JeuxBD($cnx);
-    $jeu = $j->ajoutJeu($nomjeu,$plateforme,$editeur,$anneesortie,$note);
+if(isset($_POST['submitJeu'])){
+        extract($_POST,EXTR_OVERWRITE);
+        $encodeur = $_SESSION['prenom'];
+        $jeu = new JeuxBD($cnx);
+        $j = $jeu->ajoutJeu($nomjeu,$plateforme,$editeur,$anneesortie,$note,$encodeur);
+        if($jeu==1){
+            ?>
+            <center>
+                <div class="alert alert-success" role="alert" style="width: 20%">
+                    Jeu encodé !
+                    <meta http-equiv="refresh": content="0; URl=./index_.php?page=affichageJeux.php">
+                </div>
+            </center>
+                <?php
+        }
 }
 ?>
 <div class="container" style="width: 60%">
     <h3 class="underline">Ajout d'un jeu</h3>
-    <form action="<?php print $_SERVER['PHP_SELF'];?>" method="post">
+    <form action="<?php print $_SERVER['PHP_SELF'];?>" method="POST">
         <div class="row md-6">
             <div class="col-md-3">
                 <label for="nomjeu" class="form-label">Nom du jeu</label>
@@ -37,7 +48,7 @@ if(isset($_POST['submit'])){
         </div>
         <div class="col-2">
             <br>
-            <button id="submit" type="submit" class="w-100 btn btn-md btn-custom text-white" name="submit">Ajouter</button>
+            <button type="submit" class="w-100 btn btn-md btn-custom text-white" id="submitJeu" name="submitJeu">Ajouter</button>
         </div>
     </form>
 </div>

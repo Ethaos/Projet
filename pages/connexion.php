@@ -6,33 +6,40 @@
         $ad = new UserBD($cnx);
         $admin = $ad->getUser($login,$password);
         //var_dump($admin);
-        $user = new UserBD($cnx);
-        $listeUser = $user->getClientEntete($login);
-        $nbr= count($listeUser);
-        if($admin==1){
-            $_SESSION['admin']=1;
-            for($i=0 ; $i<$nbr ; $i++){
-                $_SESSION['prenom']=$listeUser[$i]->prenom;
+
+        if($admin!=0){
+            $user = new UserBD($cnx);
+            $listeUser = $user->getClientEntete($login);
+            $nbr= count($listeUser);
+            if($admin==1){
+                $_SESSION['admin']=1;
+                for($i=0 ; $i<$nbr ; $i++){
+                    $_SESSION['prenom']=$listeUser[$i]->prenom;
+                }
+                ?>
+                <div class="center alert alert-success text-center" role="alert" style="width: 20%">
+                    <p>Connexion réussie <i class="fas fa-user-check"></i></p>
+                </div>
+                <meta http-equiv="refresh": content="0; URl=./admin/index_.php">
+                <?php
+            }else if($admin==2){
+                $_SESSION['admin']=2;
+                for($i=0 ; $i<$nbr ; $i++){
+                    $_SESSION['prenom']=$listeUser[$i]->prenom;
+                    $_SESSION['mail']=$listeUser[$i]->mail;
+                }
+                ?>
+                <div class="center alert alert-success text-center" role="alert" style="width: 20%">
+                    <p>Connexion réussie <i class="fas fa-user-check"></i></p>
+                </div>
+                <meta http-equiv="refresh": content="0; URl=./index_.php?page=accueil.php">
+                <?php
             }
-            ?>
-            <p class="center text-center">Admin vérifié<i class="fas fa-user-check"></i></p>
-            <meta http-equiv="refresh": content="0; URl=./admin/index_.php">
-            <?php
-        }else if($admin==2){
-            $_SESSION['admin']=2;
-            for($i=0 ; $i<$nbr ; $i++){
-                $_SESSION['prenom']=$listeUser[$i]->prenom;
-            }
-            ?>
-            <p class="center text-center">Client vérifié<i class="fas fa-user-check"></i></p>
-            <meta http-equiv="refresh": content="0; URl=./index_.php">
-    <?php
         }elseif($admin==0){
             ?>
-            <p class="center text-center red">
-                Client non encodé <i class="fas fa-user-times"></i><br>
-                Veuillez vous inscrire,
-                pour avoir accès à plus de fonctionnalités.</p>
+            <div class="center alert alert-danger text-center" role="alert" style="width: 20%">
+                <p>Mail / Mot de passe incorrect <i class="fas fa-user-times"></i></p>
+            </div>
     <?php
         }
     }

@@ -4,21 +4,11 @@ $jeux = new JeuxBD($cnx);
 if(isset($_GET['idJeu'])){
     $listeJeux = $jeux->getJeuxById($_GET['idJeu']);
 }else $listeJeux = $jeux->getJeux();
-
 $nbr = count($listeJeux);
-
-if(isset($_POST['submit'])){
-    extract($_POST,EXTR_OVERWRITE);
-    $j = new JeuxBD($cnx);
-    $jeu = $j->ajoutPhoto($_GET['idJeu'],$photo);
-    //var_dump($jeu);
-}
 ?>
-
-
 <div class="container">
     <?php
-    for($i=0;$i<$nbr;$i++) {  //un tour pour un seul jeu et plusieurs tours si plus de jeux
+    for($i=0;$i<$nbr;$i++) {
         ?>
             <center>
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm w-75 h-md-250">
@@ -40,7 +30,7 @@ if(isset($_POST['submit'])){
                             <tr>
                                 <th scope="row">Plateforme</th>
                                 <td>
-                                    <span contenteditable="true" name="plateforme" id="<?php print $listeJeux[$i]->idJeu;?>">
+                                    <span name="plateforme" id="<?php print $listeJeux[$i]->idJeu;?>">
                                     <?php print $listeJeux[$i]->plateforme;?>
                                     </span>
                                 </td>
@@ -48,7 +38,7 @@ if(isset($_POST['submit'])){
                             <tr>
                                 <th scope="row">Editeur</th>
                                 <td>
-                                    <span contenteditable="true" name="editeur" id="<?php print $listeJeux[$i]->idJeu;?>">
+                                    <span name="editeur" id="<?php print $listeJeux[$i]->idJeu;?>">
                                     <?php print $listeJeux[$i]->editeur;?>
                                     </span>
                                 </td>
@@ -56,7 +46,7 @@ if(isset($_POST['submit'])){
                             <tr>
                                 <th scope="row">Année</th>
                                 <td>
-                                    <span contenteditable="true" name="anneesortie" id="<?php print $listeJeux[$i]->idJeu;?>">
+                                    <span name="anneesortie" id="<?php print $listeJeux[$i]->idJeu;?>">
                                     <?php print $listeJeux[$i]->anneesortie;?>
                                     </span>
                                 </td>
@@ -64,27 +54,48 @@ if(isset($_POST['submit'])){
                             <tr>
                                 <th scope="row">Note</th>
                                 <td>
-                                    <span contenteditable="true" name="note" id="<?php print $listeJeux[$i]->idJeu;?>">
-                                    <?php print $listeJeux[$i]->note;?>
+                                    <span name="note" id="<?php print $listeJeux[$i]->idJeu;?>">
+                                        <?php print round($listeJeux[$i]->note,2);?>
+
                                     </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Encodeur</th>
+                                <td>
+                                    <?php print $listeJeux[$i]->encodeur;?>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <?php
-                        if($noimage==1){
+                        if(isset($_SESSION['admin'])==2){
                             ?>
-                                <form action="<?php print $_SERVER['PHP_SELF'];?>" method="post">
-                                    <center>
-                                        <div class="col-sm-6">
-                                            <label for="photo" class="form-label">Ajouter une image</label>
-                                            <input class="form-control form-control-sm" name="photo" type="file">
-                                            <br>
-                                            <!--<button id="submit" type="submit" class="w-50 btn btn-sm btn-dark text-white" name="submit">Ajouter</button>-->
+                                <center>
+                                    <div class="col-sm-4">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control form-control-sm" id="newNote" placeholder="Noter le jeu">
+                                            <input type="hidden" name="idjeu" id="idjeu" value="<?php print $listeJeux[$i]->idjeu;?>">
+                                            <input type="hidden" name="note" id="note" value="<?php print $listeJeux[$i]->note;?>">
+                                            <input type="hidden" name="N" id="N">
+                                            <button class="btn btn-sm btn-clair text-white" type="button" name="button" id="button">Ajouter</button>
                                         </div>
-                                    </center>
-                                </form>
-                        <?php
+                                    </div>
+                                </center>
+                            <?php
+                            if($noimage==1){
+                                ?>
+                                <center>
+                                    <div class="col-sm-6">
+                                        <label for="photo" class="form-label">Ajouter une image</label>
+                                        <input type="hidden" name="idjeu" id="idjeu" value="<?php print $listeJeux[$i]->idjeu;?>">
+                                        <input class="form-control form-control-sm" type="file" id="photo" name="photo" accept="image/*">
+                                        <br>
+                                        <button class="w-30 btn btn-sm btn-clair text-white" id="submitPhoto" type="submit" name="submitPhoto">Ajouter</button>
+                                    </div>
+                                </center>
+                            <?php
+                            }
                         }
                         ?>
                     </div>
@@ -95,9 +106,7 @@ if(isset($_POST['submit'])){
     ?>
 </div>
 <center>
-    <a class="btn btn-custom text-white" href="index_.php?page=affichageJeux.php" role="button">
+    <a class="btn btn-clair text-white" href="index_.php?page=affichageJeux.php" role="button">
         Retour
     </a>
 </center>
-
-

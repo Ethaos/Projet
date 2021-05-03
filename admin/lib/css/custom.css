@@ -9,10 +9,26 @@
     background-color: #106895;
 }
 
+.btn-outline-custom{
+    background-color: #106895;
+}
+
 .bg-custom,.btn-custom{
     background-color: #004365;
 }
 
+.btn-red{
+    background-color: #e76f6f;
+}
+
+.btn-orange{
+    background-color: #ebae44;
+}
+
 .navbar .navbar-collapse{
     text-align: center;
+}
+
+.right{
+    float: right;
 }

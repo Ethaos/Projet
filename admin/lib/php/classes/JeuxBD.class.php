@@ -10,16 +10,25 @@ class JeuxBD extends Jeux {
         $this->_db = $cnx;
     }
 
-    public function getJeux(){
-        $query = "select * from jv_jeux order by idJeu";
-        $_resultset = $this->_db->prepare($query);
-        $_resultset->execute();
+    // GETTERS
 
-        while($d = $_resultset->fetch()){
-            $_data[] = new Jeux($d);
+    public function getJeux(){
+        try{
+            $query = "select * from jv_jeux order by idJeu";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->execute();
+
+            while($d = $_resultset->fetch()){
+                $_data[] = new Jeux($d);
+            }
+            if($_data[0]==null){
+                print 'VIDE !';
+            }
+            //var_dump($_data);
+            return $_data;
+        }catch(PDOException $e){
+            print "Echec de la requete".$e->getMessage();
         }
-        //var_dump($_data);
-        return $_data;
     }
 
     public function getJeuxById($idJeu){
@@ -39,52 +48,6 @@ class JeuxBD extends Jeux {
         }
     }
 
-    public function updateJeu($champ,$id,$valeur){
-        try{
-            $query = "update jv_jeux set ".$champ."='".$valeur."'where idjeu = '".$id."'";
-            $_resultset = $this->_db->prepare($query);
-            $_resultset->execute();
-        }catch(PDOException $e){
-            print $e->getMessage();
-        }
-    }
-
-    public function ajoutJeu($nomJeu,$plateforme,$editeur,$anneesortie,$note){
-        try{
-            $query = "select ajoutJeu(:nomJeu,:plateforme,:editeur,:anneesortie,:note) as retour";
-            $_resultset = $this->_db->prepare($query);
-            $_resultset->bindValue(':nomJeu',$nomJeu);
-            $_resultset->bindValue(':plateforme',$plateforme);
-            $_resultset->bindValue(':editeur',$editeur);
-            $_resultset->bindValue(':anneesortie',$anneesortie);
-            $_resultset->bindValue(':note',$note);
-            $_resultset->execute();
-            $retour = $_resultset->fetchColumn(0);
-            //var_dump($retour);
-            return $retour;
-        }catch(PDOException $e){
-            print "Echec de la requete".$e->getMessage();
-        }
-    }
-
-    public function getAjoutJeuAjax($nomJeu,$plateforme,$editeur,$anneesortie,$note){
-        try{
-            $query = "select ajoutJeu(:nomJeu,:plateforme,:editeur,:anneesortie,:note) as retour";
-            $_resultset = $this->_db->prepare($query);
-            $_resultset->bindValue(':nomJeu',$nomJeu);
-            $_resultset->bindValue(':plateforme',$plateforme);
-            $_resultset->bindValue(':editeur',$editeur);
-            $_resultset->bindValue(':anneesortie',$anneesortie);
-            $_resultset->bindValue(':note',$note);
-            $_resultset->execute();
-            $data = $_resultset->fetch();
-            //var_dump($data);
-            return $data;
-        }catch(PDOException $e){
-            print $e->getMessage();
-        }
-    }
-
     public function getJeuByName($nomjeu){
         try{
             $query = "select * from jv_jeux where nomjeu = :nomjeu";
@@ -99,15 +62,67 @@ class JeuxBD extends Jeux {
         }
     }
 
+    //CRUD
+
+    public function ajoutJeu($nomjeu,$plateforme,$editeur,$anneesortie,$note,$encodeur){
+        try{
+            $query = "select ajoutJeu(:nomjeu,:plateforme,:editeur,:anneesortie,:note,:encodeur) as retour";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->bindValue(':nomjeu',$nomjeu);
+            $_resultset->bindValue(':plateforme',$plateforme);
+            $_resultset->bindValue(':editeur',$editeur);
+            $_resultset->bindValue(':anneesortie',$anneesortie);
+            $_resultset->bindValue(':note',$note);
+            $_resultset->bindValue(':encodeur',$encodeur);
+            $_resultset->execute();
+            $retour = $_resultset->fetchColumn(0);
+            //var_dump($retour);
+            return $retour;
+        }catch(PDOException $e){
+            print "Echec de la requete".$e->getMessage();
+        }
+    }
+
+    public function updateJeu($champ,$id,$valeur){
+        try{
+            $query = "update jv_jeux set ".$champ."='".$valeur."'where idjeu = '".$id."'";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->execute();
+        }catch(PDOException $e){
+            print $e->getMessage();
+        }
+    }
+
+    public function updateNote($id,$N){
+        try{
+            $query = "update jv_jeux set note ='".$N."'where idjeu = '".$id."'";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->execute();
+        }catch(PDOException $e){
+            print $e->getMessage();
+        }
+    }
+
+    public function supprJeu($id){
+        try{
+            $query = "select supprJeu(:idjeu) as retour";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->bindValue(':idjeu',$id);
+            $_resultset->execute();
+        }catch(PDOException $e){
+            print $e->getMessage();
+        }
+    }
+
     public function ajoutPhoto($id,$photo){
         try{
-            $query = "select ajoutphoto(:id,:photo) as retour";
+            $query = "select ajoutphoto(:idjeu,:photo) as retour";
             $_resultset = $this->_db->prepare($query);
-            $_resultset->bindValue(':id',$id);
+            $_resultset->bindValue(':idjeu',$id);
             $_resultset->bindValue(':photo',$photo);
             $_resultset->execute();
             $retour = $_resultset->fetchColumn(0);
-            var_dump($retour);
+            //var_dump($retour);
             return $retour;
         }catch(PDOException $e){
             print "Echec de la requete".$e->getMessage();
