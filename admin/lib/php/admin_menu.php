@@ -15,7 +15,7 @@ if(isset($_GET['page'])){
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                        <a class="nav-link <?php if($page=='accueil.php') {print 'active';}?>" href="index_.php?page=accueil_admin.php">Accueil</a>
+                        <a class="nav-link <?php if($page=='accueil.php') {print 'active';}?>" href="../index_.php?page=accueil.php">Accueil Client</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php if($page=='afficheClients.php') {print 'active';}?>" href="index_.php?page=afficheClients.php">Clients</a>
@@ -36,7 +36,14 @@ if(isset($_GET['page'])){
                 </ul>
                 <ul class="navbar-nav r-3 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Bonjour, <?php print $_SESSION['prenom']?></a>
+                        <a class="nav-link" href="#"><?php
+                            if(isset($_SESSION['admin'])){?>
+                            Bonjour, <?php
+                            print $_SESSION['prenom'];
+                            }else{
+                               print 'Non connecté';
+                            }?>
+                            </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php if($page=='deconnexion.php') {print 'active';}?>" href="index_.php?page=deconnexion.php">Déconnexion</a>

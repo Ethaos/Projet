@@ -15,18 +15,19 @@
                 $_SESSION['admin']=1;
                 for($i=0 ; $i<$nbr ; $i++){
                     $_SESSION['prenom']=$listeUser[$i]->prenom;
+                    $_SESSION['iduser']=$listeUser[$i]->iduser;
                 }
                 ?>
                 <div class="center alert alert-success text-center" role="alert" style="width: 20%">
                     <p>Connexion réussie <i class="fas fa-user-check"></i></p>
                 </div>
-                <meta http-equiv="refresh": content="0; URl=./admin/index_.php">
+                <meta http-equiv="refresh": content="0; URl=./admin/index_.php?page=accueil_admin.php">
                 <?php
             }else if($admin==2){
                 $_SESSION['admin']=2;
                 for($i=0 ; $i<$nbr ; $i++){
                     $_SESSION['prenom']=$listeUser[$i]->prenom;
-                    $_SESSION['mail']=$listeUser[$i]->mail;
+                    $_SESSION['iduser']=$listeUser[$i]->iduser;
                 }
                 ?>
                 <div class="center alert alert-success text-center" role="alert" style="width: 20%">

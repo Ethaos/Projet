@@ -1,6 +1,7 @@
 <?php
 include('./lib/php/verifAdmin.php');
 if(isset($_SESSION['admin'])){
+    if($_SESSION['admin']==1){
     ?>
     <div class="container" >
         <br>
@@ -10,6 +11,7 @@ if(isset($_SESSION['admin'])){
         </center>
     </div>
 <?php
+    }
 }
 ?>
 

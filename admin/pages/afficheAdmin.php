@@ -1,6 +1,7 @@
 <?php
 include('./lib/php/verifAdmin.php');
 if(isset($_SESSION['admin'])){
+if($_SESSION['admin']==1){
     $user = new UserBD($cnx);
     $listeUser = $user->getClient();
     $nbr = count($listeUser);
@@ -50,5 +51,6 @@ if(isset($_SESSION['admin'])){
         </table>
     </div>
     <?php
+}
 }
 ?>

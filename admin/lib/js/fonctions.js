@@ -23,6 +23,7 @@ $(document).ready(function(){
     });
 
     //AJOUT JEU (admin)
+
     $('#nomjeu').blur(function(){
         var nomjeu = $(this).val();
         //alert(nomjeu);
@@ -197,24 +198,28 @@ $(document).ready(function(){
 
     //MODIF CLIENT
 
-    $('#mail').blur(function(){
-        var mail = $(this).val();
-        if(mail != ''){
-            var parametre = "&mail="+mail;
-            $.ajax({
-                type: 'GET',
-                data: parametre,
-                datatype: 'json',
-                url: './admin/lib/php/ajax/ajaxVerifMail.php',
-                success: function(data){
-                    console.log(data);
-                    $('#prenom').val(data[0].prenom);
-                    $('#nom').val(data[0].nom);
-                    $('#mail').val(data[0].mail);
-                    $('#pwd').val(data[0].password);
-                }
-            });
-        }
+    $('#modifiermail').ready(function(){
+        var iduser = $.trim($('#iduser').val());
+        var parametre = '&iduser='+iduser;
+        $.ajax({
+            type: 'GET',
+            data: parametre,
+            dataType: 'json',
+            url: './admin/lib/php/ajax/ajaxClientByID.php',
+            success: function (data) {
+                console.log(data);
+                $('#mailuser').val(data[0].mail);
+            }
+        });
+    });
+
+    $('#confirmpwd').mouseleave(function(){
+       var cfpwd = $(this).val();
+       var pwd = $.trim($('#pwd').val());
+       if(cfpwd != pwd){
+           alert('Les deux mot de passes doivent être identiques !');
+           location.reload();
+       }
     });
 
 });

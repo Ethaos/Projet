@@ -25,6 +25,17 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav r-3 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <?php
+                    if(isset($_SESSION['admin'])){
+                        if($_SESSION['admin']==1){
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./admin/index_.php?page=accueil_admin.php">ADMIN</a>
+                        </li>
+                    <?php
+                        }
+                    }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="index_.php?page=pageClient.php">Bonjour, <?php print $_SESSION['prenom']?></a>
                     </li>

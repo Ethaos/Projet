@@ -2,6 +2,7 @@
 <?php
 include('./lib/php/verifAdmin.php');
 if(isset($_SESSION['admin'])){
+    if($_SESSION['admin']==1){
     if(isset($_POST['submitJeuAdmin'])){
         extract($_POST,EXTR_OVERWRITE);
         $encodeur = $_SESSION['prenom'];
@@ -55,5 +56,6 @@ if(isset($_SESSION['admin'])){
         </form>
     </div>
 <?php
+    }
 }
 ?>

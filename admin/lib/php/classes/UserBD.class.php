@@ -126,4 +126,72 @@ class UserBD extends User {
             print $e->getMessage();
         }
     }
+
+    public function getClientById($iduser){
+        try {
+            $this->_db->beginTransaction();
+            $query = "select * from jv_user where iduser = :iduser";
+            $resultset = $this->_db->prepare($query);
+            $resultset->bindValue(':iduser', $iduser);
+            $resultset->execute();
+            $data = $resultset->fetch(PDO::FETCH_OBJ);
+            return $data;
+            //renvoyer un objet nécéssite adaptation dans ajax pour retour json
+            // donc retourner objet simple, qui sera stocké dans un élément de tableau json
+
+
+            $this->_db->commit();
+
+        } catch(PDOException $e){
+            print "Echec de la requête : ".$e->getMessage();
+            $_db->rollback();
+        }
+    }
+
+    public function getClientById2($iduser){
+        try{
+            $query = "select * from jv_user where iduser = :iduser";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->bindValue(':iduser',$iduser);
+            $_resultset->execute();
+
+            while($d = $_resultset->fetch()){
+                $_data[] = new User($d);
+            }
+            //var_dump($_data);
+            return $_data;
+        }catch(PDOException $e){
+            print $e->getMessage();
+        }
+    }
+
+    public function updateMail($iduser,$mail){
+        try{
+            $query = "select modifmail(:iduser,:mail) as retour";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->bindValue(':iduser', $iduser);
+            $_resultset->bindValue(':mail', $mail);
+            $_resultset->execute();
+            $retour = $_resultset->fetchColumn(0);
+            //var_dump($retour);
+            return $retour;
+        }catch(PDOException $e){
+            print $e->getMessage();
+        }
+    }
+
+    public function updatePWD($iduser,$pwd){
+        try{
+            $query = "select modifmdp(:iduser,:password) as retour";
+            $_resultset = $this->_db->prepare($query);
+            $_resultset->bindValue(':iduser', $iduser);
+            $_resultset->bindValue(':password', md5($pwd));
+            $_resultset->execute();
+            $retour = $_resultset->fetchColumn(0);
+            //var_dump($retour);
+            return $retour;
+        }catch(PDOException $e){
+            print $e->getMessage();
+        }
+    }
 }
