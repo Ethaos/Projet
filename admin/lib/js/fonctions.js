@@ -8,7 +8,7 @@ $(document).ready(function(){
         $(this).blur(function(){
             var valeur2 = $.trim($(this).text());
             if(valeur1 != valeur2){
-                var parametre = 'champ='+name+'&id='+ident+'&nouveau='+valeur2;
+                var parametre = '&champ='+name+'&id='+ident+'&valeur='+valeur2;
                 $.ajax({
                     type:'GET',
                     data: parametre,
@@ -82,6 +82,7 @@ $(document).ready(function(){
     $('#mail').blur(function(){
         var mail = $(this).val();
         var parametre = '&mail='+mail;
+        //alert(parametre);
         $.ajax({
             type: 'GET',
             data: parametre,
@@ -93,7 +94,7 @@ $(document).ready(function(){
                 if($('#mail').val()!=''){
                     $('#inscription').hide();
                     alert('Mail déjà utilisé');
-                    location.reload();
+                    $("#inscrip").load(" #inscrip > *");
                 }else{
                     $('#mail').val(mail);
                     $('#inscription').show();
@@ -146,20 +147,25 @@ $(document).ready(function(){
         var id = $.trim($('#idjeu').val());
         var note = Number(document.getElementById("note").value);
         var newNote = Number(document.getElementById("newNote").value);
-        var N = (note+newNote)/2;
-        //alert('('+note+' + '+newNote+')/2 = '+N);
-        var parametre = '&id='+id+'&N='+N;
-        //alert(parametre);
-        $.ajax({
-            type: 'GET',
-            data: parametre,
-            datatype: 'text',
-            url: './admin/lib/php/ajax/ajaxUpdateNote.php',
-            success: function(data){
-                console.log(data);
-                location.reload();
-            }
-        });
+        if(newNote > 5 || newNote <0){
+            alert('Sont seulement acceptés les chiffres entre 0 et 5.');
+            location.reload();
+        }else{
+            var N = (note+newNote)/2;
+            //alert('('+note+' + '+newNote+')/2 = '+N);
+            var parametre = '&id='+id+'&N='+N;
+            //alert(parametre);
+            $.ajax({
+                type: 'GET',
+                data: parametre,
+                datatype: 'text',
+                url: './admin/lib/php/ajax/ajaxUpdateNote.php',
+                success: function(data){
+                    console.log(data);
+                    location.reload();
+                }
+            });
+        }
     });
 
     //SUPPRESSION D'UN CLIENT (admin)

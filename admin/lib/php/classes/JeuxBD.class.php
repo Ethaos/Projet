@@ -85,8 +85,11 @@ class JeuxBD extends Jeux {
 
     public function updateJeu($champ,$id,$valeur){
         try{
-            $query = "update jv_jeux set ".$champ."='".$valeur."'where idjeu = '".$id."'";
+            $query = "select modifjeu(:id,:champ,:valeur) as retour";
             $_resultset = $this->_db->prepare($query);
+            $_resultset->bindValue(':id',$id);
+            $_resultset->bindValue(':champ',$champ);
+            $_resultset->bindValue(':valeur',$valeur);
             $_resultset->execute();
         }catch(PDOException $e){
             print $e->getMessage();

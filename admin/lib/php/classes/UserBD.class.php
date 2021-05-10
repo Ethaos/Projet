@@ -116,10 +116,7 @@ class UserBD extends User {
             $_resultset = $this->_db->prepare($query);
             $_resultset->bindValue(':mail',$mail);
             $_resultset->execute();
-
-            while($d = $_resultset->fetch()){
-                $_data[] = new User($d);
-            }
+            $_data = $_resultset->fetch();
             //var_dump($_data);
             return $_data;
         }catch(PDOException $e){

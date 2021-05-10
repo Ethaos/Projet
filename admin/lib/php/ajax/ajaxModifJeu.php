@@ -15,9 +15,7 @@ $cnx = Connexion::getInstance($dsn, $user, $password);
 
 $j = array();
 $jeu = new JeuxBD($cnx);
-//id_produit est un parametre de l'url
-//ds js : var parametre = "id_produit="+id;
 extract($_GET, EXTR_OVERWRITE);
-$j[] = $jeu->updateJeu($champ,$id,$nouveau);
-//conversion du tableau PHP au format javascript
+$j[] = $jeu->updateJeu($champ,$id,$valeur);
+
 print json_encode($j);

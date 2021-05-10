@@ -1,7 +1,6 @@
 <br><br>
 <?php
 if(isset($_POST['inscription'])){
-    print 'BONJOUR';
     extract($_POST,EXTR_OVERWRITE);
     $u = new UserBD($cnx);
     $user = $u->inscription($nom,$prenom,$mail,$pwd);
@@ -9,17 +8,24 @@ if(isset($_POST['inscription'])){
         ?>
         <center>
             <div class="alert alert-success" role="alert" style="width: 20%">
-                Inscription réussie !
+                    Inscription réussie !
                 <meta http-equiv="refresh": content="0; URl=./index_.php?page=connexion.php">
             </div>
         </center>
         <?php
+    }else{?>
+        <center>
+            <div class="alert alert-danger" role="alert" style="width: 20%">
+                Inscription échouée ! Mail déjà présent dans la base de donnée.
+            </div>
+        </center>
+<?php
     }
 }
 ?>
 <div class="container" style="width: 70%">
     <h3 class="underline">Inscription</h3>
-    <form action="<?php print $_SERVER['PHP_SELF'];?>" method="POST">
+    <form id="inscrip" action="<?php print $_SERVER['PHP_SELF'];?>" method="POST">
         <div class="row md-6">
             <div class="col-md-3">
                 <label for="prenom" class="form-label">Prénom</label>

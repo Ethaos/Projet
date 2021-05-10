@@ -8,7 +8,7 @@ as
 	declare retour integer;
 	declare id integer;
 begin
-    select into id iduser from jv_user where nom = f_nom;
+    select into id iduser from jv_user where mail = f_mail;
 		if not found 
 		then
 			insert into jv_user (nom,prenom,mail,password,status) values (f_nom,f_prenom,f_mail,md5(f_password),false);
