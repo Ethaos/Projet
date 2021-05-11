@@ -48,8 +48,8 @@
     <div class="container" style="width: 20%">
         <form action="<?php print $_SERVER['PHP_SELF'];?>" method="post">
             <h1 class="h3 mb-3 fw-normal text-center">Connexion</h1>
-            <label for="login" class="visually-hidden" >Login</label>
-            <input type="login" name="login" id="login" class="form-control" placeholder="Login" required autofocus>
+            <label for="login" class="visually-hidden" >Mail</label>
+            <input type="login" name="login" id="login" class="form-control" placeholder="Mail" required autofocus>
             <label for="password" class="visually-hidden">Mot de passe</label>
             <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required>
             <br>

@@ -85,7 +85,7 @@ class JeuxBD extends Jeux {
 
     public function updateJeu($champ,$id,$valeur){
         try{
-            $query = "select modifjeu(:id,:champ,:valeur) as retour";
+            $query = "update jv_jeux set $champ ='".$valeur."'where idjeu = '".$id."'";
             $_resultset = $this->_db->prepare($query);
             $_resultset->bindValue(':id',$id);
             $_resultset->bindValue(':champ',$champ);
